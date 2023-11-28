@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footerlist{
+    @apply text-dark-gray text-sm not-italic font-normal leading-5 tracking-wide;
+}
+
+.btn{
+    @apply py-3 px-5 bg-light-blue rounded-md text-base font-medium text-white;
+}
