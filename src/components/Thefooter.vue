@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col" :class="[ $route.name=='mytrips' ? 'bg-light-gray' : '']">
+  <section class="flex flex-col" :class="[ $route.name=='mytrips' || $route.name=='hotel' ? 'bg-light-gray' : '']">
     <div class="flex flex-row mb-16 w-[1240px] mx-auto">
         <div class="w-[205px] mr-20	">
             <ul>

@@ -8,6 +8,7 @@ import Mytrips from '../views/Mytrips.vue'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Booking from '../views/Booking.vue'
+import resultpage from '../views/resultpage.vue'
 
 const routes = [
   {
@@ -56,12 +57,13 @@ const routes = [
      },
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/resultpage',
+    name: 'resultpage',
+    component: resultpage,
+    meta: { 
+      Layout:Defultlayout,
+      componentname:'resultpage'
+    },
   }
 ]
 

@@ -8,20 +8,22 @@
       <span class="py-2.5 px-3.5">Rooms</span>
     </div>
   </section>
-  <article class="pt-10 bg-light-gray">
+  <article class="pt-10 bg-light-gray flex justify-center">
     <hoteldetails />
+  </article>
+  <article class="bg-light-gray flex justify-center pb-40 flex flex-col items-center">
+    <availablerooms />
+    <covedcheck class="pt-40"/>
   </article>
 </template>
 
 <script>
 import Hotelview from '@/components/Hotel/hotelview.vue'
 import Hoteldetails from '@/components/Hotel/hoteldetails.vue'
+import Availablerooms from '@/components/Hotel/availablerooms.vue'
+import Covedcheck from '@/components/repetativ component/covedcheck.vue'
 export default {
-  components: {Hotelview, Hoteldetails  },
+  components: {Hotelview, Hoteldetails, Availablerooms, Covedcheck  },
 
 }
 </script>
-
-<style>
-
-</style>

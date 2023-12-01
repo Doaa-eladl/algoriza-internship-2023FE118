@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="flex justify-between w-[1240px]">
     <hotelfacilities />
     <hotelarea />
   </section>
@@ -13,7 +13,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>

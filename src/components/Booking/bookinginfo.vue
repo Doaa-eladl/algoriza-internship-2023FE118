@@ -11,7 +11,7 @@
             <li class="font-normal text-base text-[#333]">No refunds will be issued for late check-in or early check-out.</li>
         </ol>
         <p class="font-normal text-base text-dark-gray mb-6">By clicking the button below, I acknowledge that I have reviewed the <span class="text-light-blue">Privacy Statement</span> and have reviewd and accept the <span class="text-light-blue">Rules and Restrictions</span> and <span class="text-light-blue">Terms of Use</span>.</p>
-        <button class="btn">Complete Booking</button>
+        <button class="btn" @click="$emit('openmodel')">Complete Booking</button>
         <div class="flex mt-5">
             <img src="../../assets/lock-circle 1.png" alt="lock circle" class="mr-2">
             <p class="font-normal text-base text-dark-gray">We use secure transmission and encrypted storage to protect your personal information</p>
@@ -21,7 +21,13 @@
 </template>
 
 <script>
-export default {
+import { defineEmits } from 'vue'
 
+export default {
+setup(){
+  defineEmits(['openmodel'])
+
+  return { }
+}
 }
 </script>

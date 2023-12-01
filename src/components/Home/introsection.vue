@@ -5,11 +5,16 @@
         <h1 class="text-3xl	font-bold">Enjoy Your Dream Vacation</h1>
         <p class="w-3/4 mt-5 font-normal text-xl leading-7">Plan and book our perfect trip with expert advice, travel tips, destination information and  inspiration from us</p>
     </div>
+    <searchbar class="absolute bottom-[-30px]"/>
   </section>
 </template>
 
 <script>
-export default {
+import Searchbar from '@/components/repetativ component/searchbar.vue';
 
+export default {
+  components: {
+    Searchbar
+  },
 }
 </script>
