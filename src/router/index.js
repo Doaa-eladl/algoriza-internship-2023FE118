@@ -42,7 +42,7 @@ const routes = [
     meta: { Layout:Defultlayout }
   },
   {
-    path: '/hotel',
+    path: '/hotel/:id',
     name: 'hotel',
     component: Hotel,
     meta: { Layout:Defultlayout }

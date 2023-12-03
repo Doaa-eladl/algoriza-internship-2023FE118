@@ -1,7 +1,7 @@
 <template>
   <section class="w-[400px] ml-8">
     <!--should bind src from api-->
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2990.274257380938!2d-70.56068388481569!3d41.45496659976631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e52963ac45bbcb%3A0xf05e8d125e82af10!2sDos%20Mas!5e0!3m2!1sen!2sus!4v1671220374408!5m2!1sen!2sus" frameborder="0" class="w-[400px] h-[240px] mb-9"></iframe>
+    <iframe :src="`//maps.google.com/maps?q=${props.mapsrc[1]},${props.mapsrc[0]}&z=15&output=embed`" class="w-[400px] h-[240px] mb-9"></iframe>
     <h2 class="mb-5 text-primary-black text-lg font-medium">Explore the area</h2>
     <ul>
         <li class="flex justify-between mb-3 text-sm font-normal text-dark-gray">
@@ -44,7 +44,16 @@
 </template>
 
 <script>
+import { onMounted, ref } from 'vue'
 export default {
+    props:['mapsrc'],
+    setup(props){
+        let mapsrc = ref(null)
+        onMounted(()=>{
+            mapsrc.value = ref(`https//maps.google.com/maps?q='${props.mapsrc[1]}','${props.mapsrc[0]}'&z=15&output=embed`)
 
+        })
+        return { props , mapsrc }
+    }
 }
 </script>

@@ -3,14 +3,16 @@
       <div class="bg-light-blue px-5 py-4 flex rounded-t-md font-medium text-white items-center">
         <img src="../../assets/security-user 1.png" alt="security user" class="mr-4">
         <p class="mr-5 text-lg">Room 1</p>
-        <p class="text-base">2 adults, 1 double bed and 1 twin bed, Non-smoking</p>
+        <p class="text-base">{{ booking.searchvalobj.guests }} adults, {{ route.query.roomdescription }}, Non-smoking</p>
       </div>
       <form class="p-8">
         <div class="flex mb-5">
           <div class="flex flex-col mr-5 rounded">
             <label for="fname" class="text-sm font-medium text-primary-black">First Name</label>
             <!--bind on place holder with user name-->
-            <input type="text" name="fname" id="fname" placeholder="" class="w-[240px] bg-[#F2F2F2] mt-1 h-[44px] rounded pl-2.5">
+            <input type="text" name="fname" id="fname" placeholder="Doaa"
+             class="w-[240px] bg-[#F2F2F2] mt-1 h-[44px] rounded pl-2.5"
+             >
           </div>
           <div class="flex flex-col mr-5 rounded">
             <label for="lname" class="text-sm font-medium text-primary-black">Last Name</label>
@@ -98,11 +100,19 @@
 </template>
 
 <script>
+import { usebooking } from '@/stores/booking';
 import selectcountry from './selectcountry.vue';
+import { useRoute } from 'vue-router';
 
 export default {
   components: {
     selectcountry,
-}
+},
+  setup(){
+    const booking = usebooking()
+    const route = useRoute()
+
+    return { booking , route  }
+  }
 };
 </script>

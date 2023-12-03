@@ -9,3 +9,7 @@
 .btn{
     @apply py-3 px-5 bg-light-blue rounded-md text-base font-medium text-white;
 }
+
+.btnrate{
+    @apply flex w-[50px] h-[46px] border justify-center items-center font-normal text-base text-black
+}

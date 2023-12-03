@@ -6,7 +6,7 @@
     <div class="py-5 px-4 border-b">
         <div class="flex justify-between mb-4">
             <p>1 room X 2 nights</p>
-            <span>$ 120.32</span>
+            <span>$ {{ Math.round(route.query.price) }}</span>
         </div>
         <div class="flex justify-between">
             <p>Tax and service fees</p>
@@ -15,13 +15,17 @@
     </div>
     <div class="py-5 px-4 flex justify-between">
         <p>Total</p>
-        <span>$130</span>
+        <span>${{ Math.round(Number(route.query.price) - 8.32) }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import { useRoute } from 'vue-router'
 export default {
-
+    setup(){
+        const route = useRoute()
+        return { route }
+    }
 }
 </script>

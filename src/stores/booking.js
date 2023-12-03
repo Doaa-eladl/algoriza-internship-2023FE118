@@ -1,9 +1,6 @@
-import { useRoute,useRouter } from 'vue-router'
 import { defineStore } from "pinia";
 //import data from '../../userinfo.json'
 const axios = require('axios');
-const route = useRoute()
-const router = useRouter()
 
 export const usebooking = defineStore('booking',{
     state: () => ({
@@ -53,10 +50,23 @@ export const usebooking = defineStore('booking',{
                     }
                     this.isAuth = true
                     localStorage.setItem('isAuth', this.isAuth)
+                    localStorage.setItem('userid', this.users[i].id)
                     return 1
                 }
             }
             return 0
+        },
+        async addtomytrips(mytip){
+            await this.getusers()
+            for (let i = 0; i < this.users.length; i++) {
+                if(localStorage.getItem('userid')==this.users[i].id){
+                    await fetch(`http://localhost:3000/users[${this.users[i].id}]`,{
+                        method: 'POST',
+                        body: JSON.stringify(mytip),
+                        headers: {'Content-Type' : 'application/json'}
+                    })
+                }
+            }
         },
         logout(){
             this.isfirst = false
@@ -67,6 +77,8 @@ export const usebooking = defineStore('booking',{
             this.searchvalobj.checkoutdate=null
             this.searchvalobj.guests=null
             this.searchvalobj.rooms=null
+            this.hotels=[]
+            this.searchresultnum=0
         },
         setsearchval(dest,checkin,checkout,guests,rooms){
             this.searchvalobj.destination=dest
@@ -85,23 +97,10 @@ export const usebooking = defineStore('booking',{
         }
         ,
         async searchhotels(options){
-            //authorization
-            if(this.isAuth==false){
-                console.log('not auth')
-                router.push({
-                    name: "login"
-                })
-                return 0
-            }
-            if(route.name=='home'){
-                console.log('home')
-                router.push({
-                    name: "resultpage"
-                })
-            }
             try {
+                console.log('search')
                 const response = await axios.request(options);
-                console.log("here")
+                //console.log(response.data)
                 this.searchresultnum = parseInt(response.data.data.meta[0].title)
                 this.hotels = response.data.data.hotels
             } catch (error) {
@@ -111,6 +110,23 @@ export const usebooking = defineStore('booking',{
         async getsortcategories(options){
             try {
                 const response = await axios.request(options);
+                return response.data.data
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async gethoteldetails(options){  
+            try {
+                const response = await axios.request(options);
+                return response.data
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async gethotelinfo(options){
+            try {
+                const response = await axios.request(options);
+                //console.log(response.data.data);
                 return response.data.data
             } catch (error) {
                 console.error(error);

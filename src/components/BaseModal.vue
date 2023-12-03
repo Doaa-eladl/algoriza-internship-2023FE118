@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
         <Transition name="model-outer">
-            <div class="absolute w-full bg-black bg-opacity-30 h-screen top-0 left-0 flex justify-center px-8" v-show="showcondition" @click.self="closemodel">
+            <div class="absolute w-full bg-black bg-opacity-30 top-0 left-0 flex justify-center px-8" v-show="showcondition" @click.self="closemodel" :class="[ props.showmodal ? 'h-[240vh]' : 'h-screen']">
                 <Transition name="model-inner">
                     <div class="bg-white self-start m-auto z-10 w-[400px] h-[500px] flex flex-col items-center text-center rounded-lg" v-if="showcondition">
                         <slot />
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { defineEmits, ref } from 'vue'
+import { defineEmits, onMounted, ref } from 'vue'
 import { usebooking } from '@/stores/booking';
 
 export default {
@@ -27,8 +27,9 @@ export default {
         const booking = usebooking()
         let showcondition = ref(null)
 
-        showcondition.value = props.showmodal == null ? booking.isfirst : props.showmodal
-
+        onMounted(()=>{
+            showcondition.value = props.showmodal == null ? booking.isfirst : props.showmodal
+        })
         function closemodel(){
             booking.isfirst = false
             /*i try to make this fun run when booking page but child can not reassign value props
